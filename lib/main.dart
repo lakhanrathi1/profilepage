@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:profilepage/SpinView.dart';
+import 'package:profilepage/webView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -400,17 +401,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 15,),
                   const Text("Select preferred mode for communication",style: TextStyle(color: Colors.black),),
                   const SizedBox(height: 5,),
-                  Transform.translate(
-                    offset: const Offset(-20, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  Row(
+                    // mainAxisSize: MainAxisSize.max,
+                    // mainAxisAlignment: MainAxisAlignment.start,
 
-                      children: [
-                        Expanded(
-                          
+                    children: [
+                      Container(
+                        width:170,
+                        child: Transform.translate(
+                          offset: const Offset(-20, 0),
                           child: CheckboxListTile(
-                            
+                            // contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                             controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
                             title: Transform.translate(
                                 offset: const Offset(-20, 0),
@@ -421,10 +422,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
 
                           ),
-                          
                         ),
-                        Expanded(
-                          // flex: 2,
+                      ),
+                      Container(
+                        width:170,
+                        // flex: 2,
+                        child: Transform.translate(
+                          offset: const Offset(-50, 0),
                           child: CheckboxListTile(
                             controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
                             title: Transform.translate(
@@ -438,8 +442,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           ),
                         ),
-                        Expanded(
-                          // flex: 2,
+                      ),
+                      Container(
+                        width:170,
+                        // flex: 2,
+                        child: Transform.translate(
+                          offset: const Offset(-100, 0),
                           child: CheckboxListTile(
                             controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
                             title: Transform.translate(
@@ -453,9 +461,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                           ),
                         ),
+                      ),
 
-                      ],
-                    ),
+                    ],
                   ),
 
 
@@ -533,7 +541,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Expanded(
                         child: TextButton(
-                            onPressed: (){},
+                            onPressed: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Web_View()),
+                              );                              },
                             child: const Text('Cancel',style: TextStyle(color: Colors.red),),
                           style: TextButton.styleFrom(
                             side: const BorderSide(color: Colors.red, width: 2),
@@ -557,6 +569,56 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+          ),
+        ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   // shape: CircularNotchedRectangle(),
+        //   items: const <BottomNavigationBarItem>[
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.call),
+        //       label: 'Calls',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.camera),
+        //       label: 'Camera',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.chat),
+        //       label: 'Chats',
+        //     ),
+        //
+        //   ],
+        // ),
+        floatingActionButtonLocation:
+        FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.near_me), onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SpinView()),
+          );
+
+
+        },),
+        bottomNavigationBar: BottomAppBar(
+          // shape: CircularNotchedRectangle(),
+          notchMargin: 4.0,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(icon: const Icon(Icons.home,color: Colors.deepOrange,), onPressed: () {},),
+              Padding(
+                padding: const EdgeInsets.only(right: 40),
+                child: IconButton(icon: Icon(Icons.grid_view,color: Colors.grey,), onPressed: () {},),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 40),
+                child: IconButton(icon: Icon(Icons.favorite,color: Colors.grey,), onPressed: () {},),
+              ),
+              IconButton(icon: Icon(Icons.person,color: Colors.grey,), onPressed: () {},),
+
+            ],
           ),
         ),
       ),
